@@ -8,7 +8,7 @@
 # The historical hypervolumes form the baseline to determine future novelty
 #
 # Before running:
-#   1. Edit config.R (gcm_name, env_vars, hist_file, time_col, …)
+#   1. Edit 00_config.R (gcm_name, env_vars, hist_file, time_col, …)
 #   2. Ensure your historical data file exists at hist_file
 #
 # Historical data format:
