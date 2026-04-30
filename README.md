@@ -6,3 +6,5 @@ As used in Smith et al 2022, https://journals.plos.org/climate/article?id=10.137
 Full data not included, but a small working example is provided.
 
 For full analysis, start with the config file. For demo run the demo file.
+
+<img width="2333" height="1586" alt="journal pclm 0000022 g003" src="https://github.com/user-attachments/assets/97c7543e-581e-4164-bdfb-b742eb4eb71d" />
