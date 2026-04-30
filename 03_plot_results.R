@@ -9,7 +9,7 @@
 ####     • ExDet driver bar charts                            ####
 ##################################################################
 
-source("config.R")
+source("00_config.R")
 source("functions/data_utils.R")
 source("functions/hypervolume_fns.R")
 source("functions/plot_fns.R")

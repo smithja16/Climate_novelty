@@ -11,7 +11,7 @@
 library(terra)
 library(hypervolume)
 
-source("config.R")
+source("00_config.R")
 source("functions/data_utils.R")
 source("functions/spatial_grid.R")
 source("functions/hypervolume_fns.R")

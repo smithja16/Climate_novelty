@@ -1,0 +1,26 @@
+[general]
+creator=R package 'raster'
+created=2021-05-15 02:51:09
+[georeference]
+nrows=180
+ncols=185
+xmin=-133.95
+ymin=30.050000000001
+xmax=-115.450000000001
+ymax=48.05
+projection=+proj=longlat +datum=WGS84 +no_defs
+[data]
+datatype=FLT4S
+byteorder=little
+nbands=1
+bandorder=BIL
+categorical=FALSE
+minvalue=64.4928824115521
+maxvalue=287.573865519232
+nodatavalue=-3.4e+38
+[legend]
+legendtype=
+values=
+color=
+[description]
+layername=oxygen

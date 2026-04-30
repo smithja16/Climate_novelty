@@ -1,33 +1,40 @@
 ##################################################################
-####   DEMO — Using the original example data                 ####
-####                                                          ####
-####   Runs the refactored workflow using the files in        ####
-####   "R code demo/" (hist_data_example.rds + three         ####
-####   future raster pairs for IPSL July 2080).              ####
-####                                                          ####
+####   DEMO — Using simple example data                      ####
+####                                                         ####
+####   Runs a simplfied workflow using hist_data_example.rds ####
+####   and three future raster pairs for IPSL July 2080      ####
+####                                                         ####
 ####   Historical data has lon, lat, and mon columns, so     ####
 ####   all four novelty scales are demonstrated:             ####
 ####     ATAP — any time,  any place                         ####
 ####     STAP — same time, any place  (July reference)       ####
 ####     ATSP — any time,  same place (lon/lat included)     ####
 ####     STSP — same time, same place (July + lon/lat)       ####
-####                                                          ####
+####                                                         ####
 ####   This is a self-contained script — no config.R needed. ####
 ##################################################################
 
 library(terra)
 library(hypervolume)
 
-# Source all functions (adjust path if needed)
-# In RStudio: setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-setwd("c:/Users/jsmit/OneDrive/Desktop/CLIMATE NOVELTY/R code refactored")
+# Portably set working directory to the folder containing this script,
+# whether run interactively in RStudio or via Rscript from the command line.
+if (requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable()) {
+  setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+} else {
+  args     <- commandArgs(trailingOnly = FALSE)
+  file_arg <- grep("^--file=", args, value = TRUE)
+  if (length(file_arg) > 0)
+    setwd(dirname(normalizePath(sub("^--file=", "", file_arg))))
+}
+
 source("functions/data_utils.R")
 source("functions/hypervolume_fns.R")
 source("functions/plot_fns.R")
 source("functions/spatial_grid.R")
 
 # ── Demo settings ─────────────────────────────────────────────
-demo_data_dir      <- "../R code demo"
+demo_data_dir      <- "demo_data"
 output_dir         <- "outputs/demo"
 gcm_name           <- "ipsl_demo"
 env_vars           <- c("sst", "ild", "oxygen")
@@ -56,11 +63,6 @@ lat_params <- list(mean = mean(hist_raw[[lat_col]]),
                    sd   = sd(hist_raw[[lat_col]]))
 hist_scaled[[lon_col]] <- (hist_raw[[lon_col]] - lon_params$mean) / lon_params$sd
 hist_scaled[[lat_col]] <- (hist_raw[[lat_col]] - lat_params$mean) / lat_params$sd
-
-# Rename lon/lat and time columns to the standard names expected by
-# build_all_hypervolumes (lon_col / lat_col / time_col)
-# (they already match; renaming shown here for clarity only)
-names(hist_scaled)[names(hist_scaled) == time_col] <- time_col
 
 space_params <- list(lon = lon_params, lat = lat_params)
 
